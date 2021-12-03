@@ -1,10 +1,11 @@
 #####Analysis.R
-
+setwd("/Users/edeeg/Documents/practice/tutorial/Rproject2021/")
+rm(list=ls())
 #make the source of the data our supporting functions script
-source('supportingFunctions.R')
+source("supportingFunctions.R")
 
 #jack's function (part 1)
-part1(dir='/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY')
+part1(dir="/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY")
 
 #eva's function (part 2)
 for(i in 1:2){
@@ -14,8 +15,11 @@ for(i in 1:2){
     alldata1 <- function2(dir="C:/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY", country="Y")
   }
 }
-
 rbind(alldata, alldata1)
+
+
+
+
 
 #anna's function (part 3 - using Jones' compiled data)
 part3(file='allData.csv')
