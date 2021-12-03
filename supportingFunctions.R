@@ -6,7 +6,7 @@ part1<-function(dir){
   #the function starts by addressing the argument as a directory which can be changed by the user.
   #It continues by creating a variable called FILE which takes all the .txt files in a given directory
   for(i in 1:length(FILE)){
-    data<-read.table(FILE[i], header=TRUE, sep="/t", stringsAsFactors=F)
+    data<-read.table(FILE[i], header=TRUE, sep=" ", stringsAsFactors=F)
     fname=paste("screen_", i, ".csv", sep="")
     write.table(data, file=fname, row.names=FALSE, col.names=TRUE, sep=",")
   }
