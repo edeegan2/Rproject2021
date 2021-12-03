@@ -17,37 +17,52 @@ part1<-function(dir){
 
 
 #END
-
+#This function works to combine data files from each country into one data set
 function2 <- function(dir, country){
+  #setting working directory using argument dir
   setwd(dir)
+  #creating object of list of files
   FILES <- list.files(pattern=".csv")
+  #looping through files 
   for(i in 1:length(FILES)){
     if(i==1){
+      #adding first files to dataframe allfile
       allfile <- read.csv(FILES[i], sep=",", header=TRUE)
+      #adding column with country
       allfile <- allfile %>% mutate(country=country)
+      #adding column with day
       allfile <- allfile %>% mutate(Day=substr(FILES[i], 8,10))
     }else{
+      #adding the following files to dataframe
+      #reading in file
       file <- read.csv(FILES[i], sep=",", header=TRUE)
+      #adding column with country
       file <- file %>% mutate(country=country)
+      #adding column with day
       file <- file %>% mutate(Day=substr(FILES[i], 8,10))
+      #adding file to dataframe
       allfile <- rbind(allfile, file)
     }
   }
-  
+  #asking user what to do with NA's
   answer <- readline(prompt="What would you like to do with row's that have NA's?
            1: Remove rows with NA's
            2: Include NA's but with a warning
            3: Include NA's without warning")
   if(answer==1){
+    #remove rows with NA's
     allfile <- na.omit(allfile)
   }else if(answer==2){
+    #warning user if there are NA's in files
     if(any(is.na(allfile)==TRUE)){
       print("There are NA's in this file")
     }else{
       print("There are no NA's in this file") 
+      break
     }
   }else if(answer==3){
-    
+    #not warning user if they chose not to receive notice
+    break
   }
   
   return(allfile)
