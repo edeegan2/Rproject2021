@@ -13,9 +13,32 @@ part1<-function(dir){
 }
 #the For Loop reads-in all the .txt files and rewrites them as .csv files
 
-part1(dir="/Users/jackboyle/Documents/BioComputing/Rproject2021/countryY")
+part1(dir="/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY")
 
+setwd("/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY")
+list.files()
 #to run the function "Part1", the working directory is specified ^. 
 
 
 #END
+
+
+
+
+function2 <- function(dir, country){
+  setwd(dir)
+  FILES <- list.files(pattern=".csv")
+  for(i in 1:length(FILES)){
+    if(i==1){
+      allfile <- read.csv(FILES[i], sep=",", header=TRUE)
+      allfile <- allfile %>% mutate(country=country)
+      allfile <- allfile %>% mutate(Day=substr(FILES[i], 8,10))
+    }else{
+      file <- read.csv(FILES[i], sep=",", header=TRUE)
+      file <- file %>% mutate(country=country)
+      file <- file %>% mutate(Day=substr(FILES[i], 8,10))
+      allfile <- rbind(allfile, file)
+    }
+  }
+  return(allfile)
+}
