@@ -1,6 +1,15 @@
 #####Analysis.R
 
+#make the source of the data our supporting functions script
+source('supportingFunctions.R')
 
+#jack's function (part 1)
+part1(dir='/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY')
+
+#eva's function (part 2)
+
+#anna's function (part 3 - using Jones' compiled data)
+part3(file='allData.csv')
 
 
 
