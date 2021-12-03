@@ -7,6 +7,15 @@ source('supportingFunctions.R')
 part1(dir='/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY')
 
 #eva's function (part 2)
+for(i in 1:2){
+  if(i==1){
+    alldata <- function2(dir="C:/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryX", country="X")
+  }else if(i==2){
+    alldata1 <- function2(dir="C:/Users/edeeg/Documents/practice/tutorial/Rproject2021/countryY", country="Y")
+  }
+}
+
+rbind(alldata, alldata1)
 
 #anna's function (part 3 - using Jones' compiled data)
 part3(file='allData.csv')
