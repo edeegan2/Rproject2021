@@ -23,8 +23,6 @@ list.files()
 #END
 
 
-
-
 function2 <- function(dir, country){
   setwd(dir)
   FILES <- list.files(pattern=".csv")
@@ -40,6 +38,23 @@ function2 <- function(dir, country){
       allfile <- rbind(allfile, file)
     }
   }
+  
+  answer <- readline(prompt="What would you like to do with row's that have NA's?
+           1: Remove rows with NA's
+           2: Include NA's but with a warning
+           3: Include NA's without warning")
+  if(answer==1){
+    allfile <- na.omit(allfile)
+  }else if(answer==2){
+    if(any(is.na(allfile)==TRUE)){
+      print("There are NA's in this file")
+    }else{
+     print("There are no NA's in this file") 
+    }
+  }else if(answer==3){
+    
+  }
+  
   return(allfile)
 }
 
@@ -144,19 +159,5 @@ returnValues <- print(xInfected) + print(yInfected) + print(plot1DaybyDayProgres
 return(returnValues)
 }
 
-
-
-###Analysis questions:
-##Question 1 - In which country (X or Y) did the disease likely originate?
-#Based on the graphs in part 3 that show the day by day progression (plot1DaybyDayProgression and plot2DaybyDayProgression) we believe that 
-#disease likely originated in country X. This is due to the fact that early in the testing time frame, country X had nearly all of the infected 
-#patients while country Y had nearly no infected patients until about halfway through the testing time periods. 
-
-##Question 2 - If Country Y develops a vaccine for the disease, is it likely to work for citizens of Country X?
-#We don't think that the vaccine developed by County Y would work for Country X. This is due to the values that can be found in the "markers" 
-#dataframe in which the percent of infected patients with each marker for each country is given as well as the difference between these percentages.
-#Based on these values it can be seen that the percentage of infected patients based on each marker is very different between the two countries 
-#which causes us to believe that each country has strains of the virus that presents itself differently. Because of this, it is likely the vaccine
-#created in Country Y would only work for the strains with the markers that are most prevalent in that country, which are different from Country X. 
 
 
